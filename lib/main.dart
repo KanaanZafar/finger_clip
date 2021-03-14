@@ -114,7 +114,7 @@ class MyClipper extends CustomClipper<Path> {
     if (offsets != null && offsets.isNotEmpty) {
       for (int i = 0; i < offsets.length - 1; i++) {
         if (offsets[i] != null && offsets[i + 1] != null) {
-         path.lineTo(offsets[i].dx, offsets[i + 1].dy);
+          path.lineTo(offsets[i].dx, offsets[i + 1].dy);
         }
       }
       return path;
@@ -125,28 +125,5 @@ class MyClipper extends CustomClipper<Path> {
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
     return true;
-  }
-
-  Offset getStartingOffset(int startingIndex) {
-    Offset offset;
-    if (offsets[startingIndex] != null) {
-      offset = offsets[startingIndex];
-    } else {
-      startingIndex = startingIndex + 1;
-      offset = getStartingOffset(startingIndex);
-    }
-    return offset;
-  }
-
-  Offset getEndingOffset(int endingIndex) {
-    Offset offset;
-    if (offsets[endingIndex] != null) {
-      offset = offsets[endingIndex];
-    } else {
-      endingIndex = endingIndex - 1;
-      offset = getEndingOffset(endingIndex);
-    }
-    print("---finally endingIndex: $endingIndex");
-    return offset;
   }
 }
